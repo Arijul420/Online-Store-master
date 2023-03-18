@@ -1,0 +1,86 @@
+﻿@model Online_Store.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductType.ProductTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductType.ProductTypeName)
+        </dd>
+
+    </dl>
+</div>
+<p style="display:inline">
+    @Html.ActionLink("Back to List", "Index")   |   
+</p>
+<p style="display:inline">
+    @Html.ActionLink("Add to Cart", "AddCart", new { id = Model.ProductID })
+</p>
+
+@if (Enumerable.Count(ViewBag.similarProduct)>0)
+{
+    <hr />
+    <h3 style="padding-bottom:10px;">Similar Products</h3>
+
+    <div class="row">
+        @foreach (var item in ViewBag.similarProduct)
+        {
+            <div class="col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4 style="margin-top:0px;">@item.ProductName</h4>
+                        <hr style="margin:0px;">
+                        <h5 style="margin-bottom:0px;">৳ @item.ProductPrice</h5>
+                        <p style="margin:0px;">Details : @item.ProductDetails</p>
+                    </div>
+                    <div class="panel-footer">
+                        @Html.ActionLink("Details", "Details", new { id = item.ProductID })
+                        @Html.ActionLink("Add to Cart", "AddCart", new { id = item.ProductID }, new { @class = "pull-right" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

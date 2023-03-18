@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Online_Store.Models.Order>
+
+@{
+    ViewBag.Title = "UserOrder";
+}
+
+<h2>Order List</h2>
+<h4>User</h4>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.InvoiceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderUnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDateTime)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Invoice.InvoiceID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderUnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDateTime)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

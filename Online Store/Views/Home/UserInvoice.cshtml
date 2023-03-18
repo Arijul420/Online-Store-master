@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Online_Store.Models.Invoice>
+
+@{
+    ViewBag.Title = "Invoice";
+}
+
+<h2>Invoice List</h2>
+<h4>User</h4>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDateTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceDateTime)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "UserOrder", new { id = item.InvoiceID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

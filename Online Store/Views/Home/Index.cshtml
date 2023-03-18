@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Online_Store.Models.Product>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <div style="margin-top: 12px;" class="well well-sm">
+        <h2 style="display: inline; ">Products</h2>
+        <input type="submit" class="btn btn-default pull-right" value="Search">
+        @Html.TextBox("search", null, new { @class = "form-control pull-right", style = "width: 20%;" })
+        @Html.DropDownList("ProductTypeID", null, "All", htmlAttributes: new { @class = "form-control pull-right", style = "width: 20%;" })
+    </div>
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p style="margin: 0px; font-size:20px; font-family: Times, serif;">@Html.DisplayFor(modelItem => item.ProductName)</p>
+                </div>
+                <div class="panel-body">
+                    <p class="panel-title">৳ @Html.DisplayFor(modelItem => item.ProductPrice)</p>
+                    <p style="margin:0px;">Details : @Html.DisplayFor(modelItem => item.ProductDetails)</p>
+                    <p style="margin:0px;">Category : @Html.DisplayFor(modelItem => item.ProductType.ProductTypeName)</p>
+                </div>
+                <div class="panel-footer">
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductID })
+                    @Html.ActionLink("Add to Cart", "AddCart", new { id = item.ProductID }, new { @class = "pull-right" })
+                </div>
+            </div>
+        </div>
+     }
+</div>

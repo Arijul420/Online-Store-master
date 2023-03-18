@@ -1,0 +1,31 @@
+﻿@model Online_Store.Models.Product
+
+@{
+    ViewBag.Title = "AddCart";
+}
+
+<h2>Cart</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 style="margin:0px;">@Model.ProductName</h3>
+                </div>
+                <div class="panel-body">
+                    <h4 class="panel-text">৳. @Model.ProductPrice</h4>
+                    <p class="panel-text" style="margin:0px;">Details : @Model.ProductDetails</p>                  
+                    <p class="panel-text" style="margin:0px;">Category : @Model.ProductType.ProductTypeName</p>
+                    <p class="panel-text" style="margin:0px;">Rating : @Model.ProductRating</p>
+                </div>
+                <div class="panel-footer">
+                    <input type="number" min="1" max="5" id="qty" name="qty" placeholder="1">
+                    <input class = "pull-right" type="submit" value="Submit">
+                </div>
+            </div>
+        </div>
+    </div>
+}

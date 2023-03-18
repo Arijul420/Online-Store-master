@@ -1,0 +1,69 @@
+﻿@model Online_Store.Models.Product
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+<hr />
+
+@if (TempData["cart"] != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Quantity</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in TempData["cart"] as List<Online_Store.Models.Cart>)
+            {
+                <tr>
+                    <td>
+                        @item.ProductId
+                    </td>
+                    <td>
+                        @item.ProductName
+                    </td>
+                    <td>
+                        @item.ProductPrice
+                    </td>
+                    <td>
+                        @item.ProductQuantity
+                    </td>
+                    <td>
+                        @item.ProductTotal
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                        <a href="@Url.Action("Remove", new { id = item.ProductId })" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <td><b>Total</b></td>
+                <td>@TempData["total"]</td>
+                <td></td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+    using (Html.BeginForm())
+    {
+        <input class="btn btn-success pull-right" type="submit" value="Submit" style="margin-top:10px;">
+    }
+}
+else
+{
+    <h3>Cart Empty</h3>
+}
+

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Online_Store.Models.Invoice>
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2>Dashboard</h2>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.UserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceTotal)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceTotal)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "UserOrder", "Home", new { id = item.InvoiceID }, null)
+        </td>
+    </tr>
+}
+</tbody>
+<tfoot>
+    <tr>
+        <td colspan="3">Total</td>
+        <td>@ViewBag.sum</td>
+        <td></td>
+    </tr>
+</tfoot>
+</table>
